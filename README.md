@@ -1,4 +1,4 @@
-CONSEGNA 
+
 
 Si vuole progettare un sistema per la gestione di una biblioteca.
 Gli utenti si possono registrare al sistema, fornendo:
@@ -12,11 +12,11 @@ I documenti sono caratterizzati da:
 - un codice identificativo di tipo stringa
 - titolo
 - anno
-- settore (storia, matematica, economia, …)
-- uno scaffale in cui è posizionato
+- settore (storia, matematica, economia, â€¦)
+- uno scaffale in cui Ã¨ posizionato
 - un autore (Nome, Cognome)
 Per i libri si ha in aggiunta il numero di pagine, mentre per i dvd la durata.
-L’utente deve poter eseguire delle ricerche per codice o per titolo e, eventualmente, prendere in prestito registrando il periodo (Dal/Al) del prestito e il documento.
+Lâ€™utente deve poter eseguire delle ricerche per codice o per titolo e, eventualmente, prendere in prestito registrando il periodo (Dal/Al) del prestito e il documento.
 Deve essere possibile effettuare la ricerca dei prestiti dato nome e cognome di un utente.
 Creiamo anche una classe Biblioteca che contiene la lista dei documenti, la lista degli utenti e la lista dei prestiti.
-Contiene inoltre i metodi per le ricerche e per l’aggiunta dei documenti, utenti e prestiti.
+Contiene inoltre i metodi per le ricerche e per lâ€™aggiunta dei documenti, utenti e prestiti.
