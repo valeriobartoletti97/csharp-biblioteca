@@ -4,21 +4,21 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Collections.Specialized.BitVector32;
 
 namespace csharp_biblioteca
 {
-    public class Library
-    {
-
-    }
-    public class User : Library
+    public class User
     {
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public string Email { get; private set; }
         private string Password { get;  set; }
         public uint Telephone { get; private set; }
+
+        public List<User> users = new List<User>();
+
 
         public User(string name, string surname, string email, string password, uint telephone)
         {
@@ -30,7 +30,7 @@ namespace csharp_biblioteca
             Console.WriteLine($"Utente: {this.Name} {this.Surname}");
         }
     }
-    public class Document : Library
+    public class Document 
     {
         public int Code { get; private set; }
         public string Title { get;  set; }
@@ -38,6 +38,10 @@ namespace csharp_biblioteca
         public string Theme { get; set; }
         public string Section { get; set; }
         public string Author { get; set; }
+
+        public List<Document> documents = new List<Document>();
+
+        public Dictionary<DateTime, string> borrows = new Dictionary<DateTime, string>();
 
         public Document(string title, int year, string theme, string section, string author)
         {
@@ -49,6 +53,46 @@ namespace csharp_biblioteca
             this.Theme = theme;
             this.Section = section;
             this.Author = author;
+            documents.Add(this);
+        }
+        public bool FindDocumentTitle(string title)
+        {
+            for (int i = 0; i < documents.Count; i++)
+            {
+                if (documents[i].Title == title)
+                {
+                    Console.WriteLine($"Il documento {title} è presente");
+                    return true;
+                }
+            }
+            return false;
+        }
+        public void FindDocumentCode(int code)
+        {
+            for (int i = 0; i < documents.Count; i++)
+            {
+                if (documents[i].Code == code)
+                {
+                    Console.WriteLine($"Il documento con il codice {code} è presente");
+                }
+                else
+                {
+                    Console.WriteLine($"Il documento con il codice {code} non è presente");
+                }
+            }
+        }
+        public void BorrowDocument(string title)
+        {
+            if (FindDocumentTitle(title))
+            {
+                DateTime dt = DateTime.Now;
+                borrows.Add(dt, title);
+                Console.WriteLine($"Hai preso in prestito {title}");
+            }
+            else 
+            {
+                Console.WriteLine($"Il documento che stai cercando di prendere in prestito non è disponibile");
+            }
         }
     }
     public class Book : Document
