@@ -14,8 +14,8 @@
             Dvd Dvd1 = new Dvd("Pimpa", 2006, "Cartoni", "12B", "Osvaldo Cavanoli", 0.30m);
 
             Dvd1.FindDocumentTitle("Pimpa");
-            Dvd1.BorrowDocument("Pimpa");
-
+            Dvd1.BorrowDocument();
+            Libro1.BorrowDocument();
         }
     }
 }

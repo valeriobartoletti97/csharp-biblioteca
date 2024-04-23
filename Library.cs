@@ -9,6 +9,10 @@ using static System.Collections.Specialized.BitVector32;
 
 namespace csharp_biblioteca
 {
+    public class Library
+    {
+
+    }
     public class User
     {
         public string Name { get; private set; }
@@ -81,18 +85,11 @@ namespace csharp_biblioteca
                 }
             }
         }
-        public void BorrowDocument(string title)
+        public void BorrowDocument()
         {
-            if (FindDocumentTitle(title))
-            {
                 DateTime dt = DateTime.Now;
-                borrows.Add(dt, title);
-                Console.WriteLine($"Hai preso in prestito {title}");
-            }
-            else 
-            {
-                Console.WriteLine($"Il documento che stai cercando di prendere in prestito non è disponibile");
-            }
+                borrows.Add(dt, this.Title);
+                Console.WriteLine($"Hai preso in prestito {this.Title}");
         }
     }
     public class Book : Document
@@ -115,4 +112,13 @@ namespace csharp_biblioteca
             Console.WriteLine($"DVD: {this.Title}");
         }
     }
+
+    //public class Borrow
+    //{
+    //    public DateTime StartDate { get; set; }
+    //    public DateTime EndDate { get; set; }
+    //    public string UserName { get; set; }
+    //    public string UserSurname { get; set; }
+    //    public string Title { get; set; }
+    //}
 }
