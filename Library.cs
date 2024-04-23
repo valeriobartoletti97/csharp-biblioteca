@@ -11,55 +11,11 @@ namespace csharp_biblioteca
 {
     public class Library
     {
+        public static List<User> users = new List<User>();
+        public static List<Document> documents = new List<Document>();
+        public static Dictionary<DateTime, string> borrows = new Dictionary<DateTime, string>();
 
-    }
-    public class User
-    {
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-        public string Email { get; private set; }
-        private string Password { get;  set; }
-        public uint Telephone { get; private set; }
-
-        public List<User> users = new List<User>();
-
-
-        public User(string name, string surname, string email, string password, uint telephone)
-        {
-            this.Name = name;
-            this.Surname = surname;
-            this.Email = email;
-            this.Password = password;
-            this.Telephone = telephone;
-            Console.WriteLine($"Utente: {this.Name} {this.Surname}");
-        }
-    }
-    public class Document 
-    {
-        public int Code { get; private set; }
-        public string Title { get;  set; }
-        public int Year { get; set; }   
-        public string Theme { get; set; }
-        public string Section { get; set; }
-        public string Author { get; set; }
-
-        public List<Document> documents = new List<Document>();
-
-        public Dictionary<DateTime, string> borrows = new Dictionary<DateTime, string>();
-
-        public Document(string title, int year, string theme, string section, string author)
-        {
-            Thread.Sleep(1);
-            System.Random rand = new System.Random();
-            this.Code = rand.Next(0,100000);
-            this.Title = title;
-            this.Year = year;
-            this.Theme = theme;
-            this.Section = section;
-            this.Author = author;
-            documents.Add(this);
-        }
-        public bool FindDocumentTitle(string title)
+        public static bool FindDocumentTitle(string title)
         {
             for (int i = 0; i < documents.Count; i++)
             {
@@ -71,7 +27,7 @@ namespace csharp_biblioteca
             }
             return false;
         }
-        public void FindDocumentCode(int code)
+        public static void FindDocumentCode(int code)
         {
             for (int i = 0; i < documents.Count; i++)
             {
@@ -85,10 +41,56 @@ namespace csharp_biblioteca
                 }
             }
         }
+    }
+    public class User
+    {
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
+        public string Email { get; private set; }
+        private string Password { get;  set; }
+        public uint Telephone { get; private set; }
+
+
+
+        public User(string name, string surname, string email, string password, uint telephone)
+        {
+            this.Name = name;
+            this.Surname = surname;
+            this.Email = email;
+            this.Password = password;
+            this.Telephone = telephone;
+            Library.users.Add(this);
+            Console.WriteLine($"Utente: {this.Name} {this.Surname}");
+        }
+    }
+    public class Document 
+    {
+        public int Code { get; private set; }
+        public string Title { get;  set; }
+        public int Year { get; set; }   
+        public string Theme { get; set; }
+        public string Section { get; set; }
+        public string Author { get; set; }
+
+
+
+        public Document(string title, int year, string theme, string section, string author)
+        {
+            Thread.Sleep(1);
+            System.Random rand = new System.Random();
+            this.Code = rand.Next(0,100000);
+            this.Title = title;
+            this.Year = year;
+            this.Theme = theme;
+            this.Section = section;
+            this.Author = author;
+            Library.documents.Add(this);
+        }
+       
         public void BorrowDocument()
         {
                 DateTime dt = DateTime.Now;
-                borrows.Add(dt, this.Title);
+                Library.borrows.Add(dt, this.Title);
                 Console.WriteLine($"Hai preso in prestito {this.Title}");
         }
     }
